@@ -1,6 +1,11 @@
 package cn.keaper.p171;
 
+/**
+ * https://leetcode.com/problems/excel-sheet-column-number/
+ * 镜像问题：P168
+ */
 public class Solution {
+
 
     public int titleToNumber(String s) {
         int res = 0;

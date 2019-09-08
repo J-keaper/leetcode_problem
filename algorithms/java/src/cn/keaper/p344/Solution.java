@@ -1,0 +1,13 @@
+package cn.keaper.p344;
+
+public class Solution {
+
+    public void reverseString(char[] s) {
+        int l = s.length;
+        for (int i = 0; i < l / 2; i++) {
+            char c = s[i];
+            s[i] = s[l - i - 1];
+            s[l - i - 1] = c;
+        }
+    }
+}

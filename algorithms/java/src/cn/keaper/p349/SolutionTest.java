@@ -22,6 +22,11 @@ public class SolutionTest {
         cases.forEach(c -> System.out.println(Arrays.toString(solution.intersection(c.nums1, c.nums2))));
     }
 
+    @Test
+    public void intersection1() {
+        cases.forEach(c -> System.out.println(Arrays.toString(solution.intersection1(c.nums1, c.nums2))));
+    }
+
     private class Case{
         private int[] nums1;
         private int[] nums2;

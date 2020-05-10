@@ -36,6 +36,32 @@ public class Solution {
         return res;
     }
 
+
+    /**
+     * 优化之后勉强不超时
+     */
+    public List<List<Integer>> threeSum2(int[] nums) {
+        Map<Integer,Integer> indexMap = new HashMap<>();
+        for (int i = 0; i < nums.length; i++) {
+            indexMap.put(nums[i], i);
+        }
+        Set<List<Integer>> res = new HashSet<>();
+        for (int i = 0; i < nums.length - 2; i++) {
+            for (int j = i + 1; j < nums.length - 1; j++) {
+                Integer index = indexMap.get(-nums[i] - nums[j]);
+                if(index != null && index > i && index > j){
+                    Integer[] r = new Integer[]{nums[i], nums[j], -nums[i] - nums[j]};
+                    Arrays.sort(r);
+                    List<Integer> oneSolution = Arrays.asList(r);
+                    if(!res.contains(oneSolution)){
+                        res.add(oneSolution);
+                    }
+                }
+            }
+        }
+        return new ArrayList<>(res);
+    }
+
     /**
      * 结果：Time Limit Exceeded
      * time: O(N^2)

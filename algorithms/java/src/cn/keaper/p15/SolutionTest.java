@@ -32,4 +32,29 @@ public class SolutionTest {
         });
 
     }
+    @Test
+    public void threeSum1() {
+        cases.forEach(c -> {
+            List<List<Integer>> res = solution.threeSum2(c);
+            for (List<Integer> r : res) {
+                System.out.print("[");
+                r.forEach(i -> System.out.print(i + ","));
+                System.out.print("],");
+            }
+            System.out.println();
+        });
+    }
+
+    @Test
+    public void threeSum2() {
+        cases.forEach(c -> {
+            List<List<Integer>> res = solution.threeSum2(c);
+            for (List<Integer> r : res) {
+                System.out.print("[");
+                r.forEach(i -> System.out.print(i + ","));
+                System.out.print("],");
+            }
+            System.out.println();
+        });
+    }
 }

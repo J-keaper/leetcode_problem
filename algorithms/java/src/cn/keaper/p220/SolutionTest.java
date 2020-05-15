@@ -12,6 +12,7 @@ public class SolutionTest {
     private Solution solution = new Solution();
 
     private List<int[]> cases = Arrays.asList(
+            new int[]{-1,-1, 1, -1},
             new int[]{ 1,2},
             new int[]{1, 1,2},
             new int[]{1,2, 1,2},
@@ -25,8 +26,12 @@ public class SolutionTest {
 
     @Test
     public void containsNearbyAlmostDuplicate() {
-        cases.forEach(c -> System.out.println(solution.containsNearbyAlmostDuplicate(
-                Arrays.copyOf(c, c.length - 2),c[c.length-2], c[c.length-1])));
+        cases.forEach(c -> {
+            System.out.println(solution.containsNearbyAlmostDuplicate(
+                    Arrays.copyOf(c, c.length - 2),c[c.length-2], c[c.length-1]));
+            System.out.println(solution.containsNearbyAlmostDuplicate1(
+                    Arrays.copyOf(c, c.length - 2),c[c.length-2], c[c.length-1]));
+        });
 
     }
 }

@@ -2,6 +2,8 @@ package cn.keaper.p234;
 
 import cn.keaper.utils.list.integer.ListNode;
 
+import java.util.Stack;
+
 /**
  * https://leetcode.com/problems/palindrome-linked-list/
  */
@@ -69,4 +71,33 @@ public class Solution {
         }
         return true;
     }
+
+
+    /**
+     * 使用快慢指针，找到中点，并且将前半部分记录在栈中
+     * 继续向后遍历后半段，与栈中弹出数字比较，全部相等则是回文串
+     */
+    public boolean isPalindrome2(ListNode head) {
+        Stack<Integer> left = new Stack<>();
+        ListNode fast = head, slow = head;
+        while (fast != null && fast.next != null){
+            fast = fast.next.next;
+            left.push(slow.val);
+            slow = slow.next;
+        }
+        if(fast != null){
+            slow = slow.next;
+        }
+
+        while (slow != null){
+            int top = left.pop();
+            if(top != slow.val){
+                return false;
+            }
+            slow = slow.next;
+        }
+        return true;
+    }
+
+
 }

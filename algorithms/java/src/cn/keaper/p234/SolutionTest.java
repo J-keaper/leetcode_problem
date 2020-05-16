@@ -32,4 +32,9 @@ public class SolutionTest {
     public void isPalindrome() {
         cases.forEach(c -> System.out.println(Arrays.toString(c) + " -> " + solution.isPalindrome(ListBuilder.build(c))));
     }
+
+    @Test
+    public void isPalindrome2() {
+        cases.forEach(c -> System.out.println(Arrays.toString(c) + " -> " + solution.isPalindrome2(ListBuilder.build(c))));
+    }
 }

@@ -16,8 +16,8 @@ public class Solution {
             if(j >= 0){
                 sum += b.charAt(j--) - '0';
             }
-            res.append(sum % 2);
-            carry = sum / 2;
+            res.append(sum & 1); // sum % 2
+            carry = sum >> 1; // sum / 2
         }
         if(carry != 0){
             res.append(carry);

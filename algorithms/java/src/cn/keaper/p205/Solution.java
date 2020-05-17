@@ -32,6 +32,31 @@ public class Solution {
     }
 
     /**
+     * 这种方式更容易理解
+     * 维护两个方向的映射，只要发现任意一个方向的映射重复了，即不合法
+     */
+    public boolean isIsomorphic4(String s, String t) {
+        char[] k = new char[128];
+        char[] v = new char[128];
+        char[] S = s.toCharArray();
+        char[] T = t.toCharArray();
+        int len = s.length();
+        for (int i = 0; i < len; i++) {
+            char charS = S[i] , charT = T[i];
+            if(k[charS] != '\0' && k[charS] != charT){
+                return false;
+            }
+            if(v[charT] != '\0' && v[charT] != charS){
+                return false;
+            }
+            k[charS] = charT;
+            v[charT] = charS;
+        }
+        return true;
+    }
+
+
+    /**
      * cost: 2ms
      * O(N)
      */

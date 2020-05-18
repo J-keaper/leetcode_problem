@@ -26,6 +26,11 @@ public class SolutionTest {
 
     @Test
     public void longestValidParentheses() {
-        cases.forEach(c -> System.out.println(solution.longestValidParentheses(c)));
+        cases.forEach(c -> System.out.println(
+                solution.longestValidParentheses(c)
+                        + " " + solution.longestValidParentheses2(c)
+                        + " " + solution.longestValidParentheses3(c)
+        ));
+
     }
 }

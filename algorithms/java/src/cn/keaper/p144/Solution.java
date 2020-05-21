@@ -75,9 +75,6 @@ public class Solution {
         return res;
     }
 
-    /**
-     * 其实也可以继承自TreeNode
-     */
     private static class WrapperNode{
         TreeNode treeNode;
         boolean accessed;

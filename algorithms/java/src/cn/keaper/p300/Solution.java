@@ -37,16 +37,24 @@ public class Solution {
      * LIS = max(dp[i]),其中0≤i<n
      */
     public int lengthOfLIS1(int[] nums) {
+        if(nums.length == 0){
+            return 0;
+        }
         int dp[] = new int[nums.length];
+        int res = 0;
         for(int i = 0 ; i < nums.length ; i ++){
             int max = 0;
             for(int j = 0 ; j < i ; j ++){
-                max = Integer.max(max, dp[j] + (nums[i] > nums[i] ? 1 : 0));
+                if(nums[j] < nums[i]){
+                    max = Integer.max(max, dp[j]);
+                }
             }
             dp[i] = max + 1;
+            res = Integer.max(res, dp[i]);
         }
-        return dp[nums.length - 1];
+        return res;
     }
+
 
 
 

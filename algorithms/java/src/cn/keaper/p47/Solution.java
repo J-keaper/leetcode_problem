@@ -39,4 +39,36 @@ public class Solution {
         }
     }
 
+
+    public List<List<Integer>> permuteUnique2(int[] nums) {
+        List<List<Integer>> res = new LinkedList<>();
+        Arrays.sort(nums);
+        dfs(res, nums, new boolean[nums.length], new ArrayList<>(), 0);
+        return res;
+    }
+
+
+    /**
+     * 使用used数组来表示对应位置的元素是否已经被使用
+     *
+     * 去重逻辑：对于待选的相同数字，只选第一个
+     *
+     */
+    private void dfs(List<List<Integer>> res, int[] nums, boolean[] used, List<Integer> output, int depth){
+        if(depth == nums.length){
+            res.add(new ArrayList<>(output));
+            return;
+        }
+        for (int i = 0; i < used.length; i++) {
+            if(used[i]) continue;
+            if(i > 0 && nums[i] == nums[i-1] && !used[i-1]) continue;
+            used[i] = true;
+            output.add(nums[i]);
+            dfs(res, nums, used, output, depth + 1);
+            output.remove(output.size() - 1);
+            used[i] = false;
+        }
+    }
+
+
 }

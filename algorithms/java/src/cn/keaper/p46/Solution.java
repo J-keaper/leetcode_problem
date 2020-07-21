@@ -69,4 +69,30 @@ public class Solution {
             Collections.swap(nums, depth, i);
         }
     }
+
+    public List<List<Integer>> permute3(int[] nums) {
+        res = new LinkedList<>();
+        dfs(nums, new boolean[nums.length], new ArrayList<>(), 0);
+        return res;
+    }
+
+
+    /**
+     * 使用数组来表示对应位置的元素是否已经被使用
+     */
+    private void dfs(int[] nums, boolean[] used, List<Integer> output, int depth){
+        if(depth == nums.length){
+            res.add(new ArrayList<>(output));
+            return;
+        }
+        for (int i = 0; i < used.length; i++) {
+            if(used[i]) continue;
+            used[i] = true;
+            output.add(nums[i]);
+            dfs(nums, used, output, depth + 1);
+            output.remove(output.size() - 1);
+            used[i] = false;
+        }
+    }
+
 }

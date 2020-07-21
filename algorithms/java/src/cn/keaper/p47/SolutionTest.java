@@ -32,4 +32,18 @@ public class SolutionTest {
             System.out.println("-------");
         });
     }
+
+
+    @Test
+    public void permuteUnique2() {
+        cases.forEach(c -> {
+            List<List<Integer>> res = solution.permuteUnique2(c);
+            res.forEach(arr -> {
+                arr.forEach(i -> System.out.print(i + " "));
+                System.out.println();
+            });
+            System.out.println("-------");
+        });
+    }
+
 }

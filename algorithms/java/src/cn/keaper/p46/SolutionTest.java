@@ -46,4 +46,17 @@ public class SolutionTest {
             System.out.println("-------");
         });
     }
+
+    @Test
+    public void permute3() {
+        cases.forEach(c -> {
+            List<List<Integer>> res = solution.permute3(c);
+            res.forEach(arr -> {
+                arr.forEach(i -> System.out.print(i + " "));
+                System.out.println();
+            });
+            System.out.println("-------");
+        });
+    }
+
 }

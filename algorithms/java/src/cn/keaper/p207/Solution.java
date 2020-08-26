@@ -1,4 +1,4 @@
-package cn.keaper.p210;
+package cn.keaper.p207;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -6,17 +6,17 @@ import java.util.List;
 import java.util.Queue;
 
 /**
- * https://leetcode.com/problems/course-schedule-ii/
+ * https://leetcode.com/problems/course-schedule/
  */
 public class Solution {
 
 
     /**
      *
-     * @see cn.keaper.p207.Solution
+     * @see cn.keaper.p210.Solution
      *
      * 将每个课程看作一个节点，有先修课程关系的两门课之间有一条单向边，表示先修关系
-     * 那么问题为找到这个图的一个拓扑排序
+     * 那么问题为判断这个图是否存在一个拓扑排序
      *
      * 根据 节点之间的的边 构建一个用领接表存储的图，并记录每个节点的入度
      * 使用一个队列来进行广度优先搜索，开始时，所有入度为 0 的节点都被放入队列中，
@@ -28,7 +28,7 @@ public class Solution {
      *
      * 如果答案中包含了这 n 个节点，那么我们就找到了一种拓扑排序，否则说明图中存在环，也就不存在拓扑排序了。
      */
-    public int[] findOrder(int numCourses, int[][] prerequisites) {
+    public boolean canFinish(int numCourses, int[][] prerequisites) {
         // 构建临接表及入度
         List<List<Integer>> edges = new ArrayList<>(numCourses);
         int[] inDegree = new int[numCourses];
@@ -47,11 +47,10 @@ public class Solution {
             }
         }
 
-        int[] res = new int[numCourses];
-        int resIndex = 0;
+        int count = 0;
         while (!queue.isEmpty()){
             int top = queue.poll();
-            res[resIndex++] = top;
+            count++;
             for (Integer target : edges.get(top)) {
                 inDegree[target]--;
                 if(inDegree[target] == 0){
@@ -59,8 +58,6 @@ public class Solution {
                 }
             }
         }
-        return resIndex < numCourses ? new int[0] : res;
+        return count == numCourses;
     }
-
-
 }

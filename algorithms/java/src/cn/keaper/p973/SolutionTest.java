@@ -23,6 +23,7 @@ public class SolutionTest {
         cases.forEach(c -> {
             System.out.println(Arrays.deepToString(solution.kClosest(c.points.clone(), c.k)));
             System.out.println(Arrays.deepToString(solution.kClosest1(c.points.clone(), c.k)));
+            System.out.println(Arrays.deepToString(solution.kClosest2(c.points.clone(), c.k)));
             System.out.println();
         });
     }

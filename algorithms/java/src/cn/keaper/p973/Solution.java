@@ -1,6 +1,7 @@
 package cn.keaper.p973;
 
 
+import java.util.Arrays;
 import java.util.Comparator;
 import java.util.PriorityQueue;
 
@@ -8,6 +9,49 @@ import java.util.PriorityQueue;
  * https://leetcode.com/problems/k-closest-points-to-origin/
  */
 public class Solution {
+
+    public int[][] kClosest2(int[][] points, int K) {
+        quickSelect(points,0, points.length - 1, K - 1);
+        return Arrays.copyOf(points, K);
+    }
+
+    /**
+     * 我们的目的是寻找最小的 k 个数。假设经过一次 partition 操作，枢纽元素位于下标 m，也就是说，左侧的数组有 m 个元素，是原数组中最小的 m 个数。那么：
+     *
+     * 若 k = m，我们就找到了最小的 k 个数，就是左侧的数组；
+     * 若 k < m，则最小的 k 个数一定都在左侧数组中，我们只需要对左侧数组递归 partition 即可；
+     * 若 k > m，则左侧数组中的 m 个数都属于最小的 k 个数，我们还需要在右侧数组中寻找最小的 k-m 个数，对右侧数组递归地 partition 即可。
+     */
+    void quickSelect(int[][] points, int l, int r, int k){
+        int pos = partition(points, l , r);
+        if(pos == k){
+            return;
+        }
+        if(pos < k){
+            quickSelect(points, pos + 1, r, k);
+        }else{
+            quickSelect(points, l, pos - 1, k);
+        }
+    }
+
+
+    /**
+     * 快速排序的核心
+     * 将数组元素调换顺序使得 某个位置 pos 左边的元素都比 point[l] 小，右边的元素都比 point[l] 大
+     */
+    int partition(int[][] points, int l, int r){
+        int i = l, j = r;
+        int[] base = points[l];
+        while (i < j){
+            while (i < j && compare(base, points[j]) < 0) j--;
+            if(i < j) points[i++] = points[j];
+            while (i < j && compare(base, points[i]) > 0) i++;
+            if(i < j) points[j--] = points[i];
+        }
+        points[i] = base;
+        return i;
+    }
+
 
     /**
      * 使用 PriorityQueue 维护一个大小为K的大顶堆

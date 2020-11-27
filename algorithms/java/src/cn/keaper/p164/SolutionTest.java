@@ -25,6 +25,7 @@ public class SolutionTest {
         cases.forEach(c -> {
             System.out.println(solution.maximumGap(c));
             System.out.println(solution.maximumGap1(c));
+            System.out.println(solution.maximumGap2(c));
             System.out.println();
         });
     }

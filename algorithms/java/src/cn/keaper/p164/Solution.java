@@ -67,4 +67,50 @@ public class Solution {
         return maxGap;
     }
 
+
+    /**
+     * 使用一种复杂度为O(N)的排序算法排序
+     * 基数排序，由低位到高位
+     */
+    public int maximumGap2(int[] nums) {
+        if (nums.length < 2) {
+            return 0;
+        }
+        // 计算最大值
+        int maxVal = Integer.MIN_VALUE;
+        for (int num : nums) {
+            maxVal = Math.max(num, maxVal);
+        }
+
+        // 临时数组存放每一轮排序后的结果
+        int[] stash = new int[nums.length];
+        int base = 1; // 记录位数
+        while (base <= maxVal){
+            int[] radix = new int[10]; // 0-9分别对应数字的个数
+            for (int num : nums) {
+                radix[(num / base) % 10]++;
+            }
+            // 计算前缀和，为了方便得到最后每个数字应该所在的位置
+            for (int i = 1; i < radix.length; i++) {
+                radix[i] += radix[i-1];
+            }
+            // 使用前缀和数组将数字放到对应位置上，注意这里需要是倒序，因为stash插入顺序是倒着的
+            for (int i = nums.length - 1; i >= 0; i--) {
+                int mod = (nums[i] / base) % 10;
+                stash[radix[mod] - 1] = nums[i];
+                radix[mod]--;
+            }
+
+            // 将一轮排序后的结果复制到nums，下一轮排序使用
+            System.arraycopy(stash, 0, nums, 0, nums.length);
+            base *= 10;
+        }
+
+        int maxGap = 0;
+        for (int i = 1; i < nums.length; i++) {
+            maxGap = Math.max(maxGap, nums[i] - nums[i - 1]);
+        }
+        return maxGap;
+
+    }
 }

@@ -21,6 +21,7 @@ public class SolutionTest {
     public void fourSumCount() {
         cases.forEach(c -> {
             System.out.println(solution.fourSumCount(c[0],c[1],c[2],c[3]));
+            System.out.println(solution.fourSumCount1(c[0],c[1],c[2],c[3]));
             System.out.println();
         });
     }

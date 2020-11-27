@@ -37,4 +37,24 @@ public class Solution {
         return res;
     }
 
+
+    /**
+     * 可以将第二个Map去掉，在遍历数组C和数组D的时候直接计算
+     */
+    public int fourSumCount1(int[] A, int[] B, int[] C, int[] D) {
+        Map<Integer, Integer> sumAB = new HashMap<>();
+        for (int i : A) {
+            for (int j : B) {
+                sumAB.put(i + j, sumAB.getOrDefault(i + j, 0) + 1);
+            }
+        }
+        int res = 0;
+        for (int i : C) {
+            for (int j : D) {
+                res += sumAB.getOrDefault(-i - j, 0);
+            }
+        }
+        return res;
+    }
+
 }

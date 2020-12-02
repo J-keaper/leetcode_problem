@@ -22,12 +22,10 @@ public class Solution {
      */
     public int[] maxNumber(int[] nums1, int[] nums2, int k) {
         int[] res = new int[k];
-        int l1 = nums1.length, l2 = nums2.length;
-        for (int i = 0; i <= l1; i++) {
-            int j = k - i;
-            if(j < 0 || j > l2) continue;
+        int start = Math.max(0, k - nums2.length), end = Math.min(k, nums1.length);
+        for (int i = start; i <= end; i++) {
             int[] subSeq1 = maxSubSeq(nums1, i);
-            int[] subSeq2 = maxSubSeq(nums2, j);
+            int[] subSeq2 = maxSubSeq(nums2, k - i);
             int[] value = merge(subSeq1, subSeq2);
             if(compare(res,0, value, 0) < 0){
                 res = value;
@@ -50,16 +48,20 @@ public class Solution {
         if(k == 0){
             return new int[]{};
         }
-        int[] stack = new int[nums.length];
+        int[] stack = new int[k];
         int top = 0, drop = nums.length - k;
         for (int num : nums) {
             while (drop > 0 && top > 0 && stack[top - 1] < num) {
                 top--;
                 drop--;
             }
-            stack[top++] = num;
+            if(top < k){  // 如果栈未满，入栈
+                stack[top++] = num;
+            }else{  // 如果栈已满
+                drop--;
+            }
         }
-        return Arrays.copyOfRange(stack, 0, k);
+        return stack;
     }
 
 

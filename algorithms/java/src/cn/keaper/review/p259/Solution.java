@@ -13,17 +13,16 @@ public class Solution {
         for (int i = 0; i < nums.length; i++) {
             int l = i + 1, r = nums.length - 1;
             while (l < r){
-                int sum = nums[l] + nums[r];
+                int sum = nums[l] + nums[r] + nums[i];
                 if(sum < target){
-                    res += l - r;
+                    res += (r - l);
                     l++;
-                }else if(sum > target){
+                }else {
                     r--;
                 }
             }
         }
         return res;
-
     }
 
 }

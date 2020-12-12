@@ -18,4 +18,18 @@ public class Solution {
         }
         return prev;
     }
+
+
+    /**
+     * 迭代版
+     */
+    public ListNode reverseList1(ListNode head) {
+        if(head == null || head.next == null){
+            return head;
+        }
+        ListNode newHead = reverseList1(head.next);
+        head.next.next = head;
+        head.next = null;
+        return newHead;
+    }
 }

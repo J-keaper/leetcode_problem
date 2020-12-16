@@ -27,6 +27,13 @@ public class SolutionTest {
             ListNode res = solution.getIntersectionNode(nodes[0],nodes[1]);
             System.out.println(res == null ? "null" : res.val);
         });
+
+        Arrays.stream(cases).forEach(c -> {
+            ListNode[] nodes = buildInput(c);
+            ListNode res = solution.getIntersectionNode1(nodes[0],nodes[1]);
+            System.out.println(res == null ? "null" : res.val);
+        });
+
     }
 
     private ListNode[] buildInput(Input input){

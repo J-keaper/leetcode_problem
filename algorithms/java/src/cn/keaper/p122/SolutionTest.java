@@ -23,7 +23,15 @@ public class SolutionTest {
 
     @Test
     public void maxProfit() {
-        cases.forEach(o -> System.out.println(solution.maxProfit(o)));
+        cases.forEach(o -> {
+            System.out.println(solution.maxProfit(o));
+            System.out.println(solution.maxProfit1(o));
+            System.out.println(solution.maxProfit2(o));
+            System.out.println(solution.maxProfit3(o));
+
+            System.out.println();
+
+        });
     }
 
     @Test

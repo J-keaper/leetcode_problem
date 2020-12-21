@@ -23,8 +23,6 @@ public class SolutionTest {
     public void removeDuplicateLetters() {
         cases.forEach(c -> {
             System.out.println(solution.removeDuplicateLetters(c));
-            System.out.println(solution.removeDuplicateLetters1(c));
-
         });
     }
 }

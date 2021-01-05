@@ -87,4 +87,24 @@ public class Solution {
         }
         return inLeft || inRight || (root == p || root == q);
     }
+
+
+    /**
+     * 递归地在左子树和右子树中找寻找p或者q
+     * 如果两边都能找到，说明当前节点就是最近公共祖先
+     * 如果左边没找到，则说明p和q都在右子树
+     * 如果右边没找到，则说明p和q都在左子树
+     *
+     */
+    public TreeNode lowestCommonAncestor2(TreeNode root, TreeNode p, TreeNode q) {
+        if(root == null || p == root || q == root){ // 找到了p或者q，则返回
+            return root;
+        }
+        TreeNode left = lowestCommonAncestor(root.left, p, q);
+        TreeNode right = lowestCommonAncestor(root.right, p, q);
+        if(left != null && right != null){ // 如果左子树和右子树都找到了那么返回根结点
+            return root;
+        }
+        return left == null ? right : left;  // 返回已经找到的结果
+    }
 }

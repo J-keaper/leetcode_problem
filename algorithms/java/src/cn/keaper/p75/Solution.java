@@ -32,6 +32,28 @@ public class Solution {
         }
     }
 
+    /**
+     * 扫描两遍
+     * 第一遍将0交换到数组开头
+     * 第二遍将1交换到0之后
+     */
+    public void sortColors1(int[] nums) {
+        int c = 0;
+        for (int i = 0; i < nums.length; i++) {
+            if(nums[i] == 0){
+                swap(nums, i, c);
+                c++;
+            }
+        }
+        for (int i = 0; i < nums.length; i++) {
+            if(nums[i] == 1){
+                swap(nums, i, c);
+                c++;
+            }
+        }
+    }
+
+
     private void swap(int[] nums, int i, int j){
         int temp = nums[i];
         nums[i] = nums[j];

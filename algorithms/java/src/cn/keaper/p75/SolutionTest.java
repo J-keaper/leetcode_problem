@@ -23,5 +23,11 @@ public class SolutionTest {
             System.out.println(Arrays.toString(c));
         });
 
+
+        cases.forEach(c -> {
+            solution.sortColors1(c);
+            System.out.println(Arrays.toString(c));
+        });
+
     }
 }
